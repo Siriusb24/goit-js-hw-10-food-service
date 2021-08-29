@@ -11,12 +11,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Siriusb24/goit-js-hw-10-food-service"
+    "url": "git+https://github.com/Siriusb24/goit-js-hw-10-food-service.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Siriusb24/goit-js-hw-10-food-service/issues"
+    "url": "https://github.com/Siriusb24/goit-js-hw-10-food-service.git/issues"
   },
   "homepage": "https://siriusb24.github.io/goit-js-hw-10-food-service/",
   "dependencies": {

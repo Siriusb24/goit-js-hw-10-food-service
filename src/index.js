@@ -12,8 +12,9 @@ import foodTamplate from './tamplates/food-gallery.hbs'
 // ----------------------------------------------------------------------------
 const body = document.querySelector('body')
 const foodList = document.querySelector(".js-menu")
-const foodMarkup = foodTamplate(foodGallery)
 const lightControl = document.getElementById("theme-switch-toggle")
+
+const foodMarkup = foodTamplate(foodGallery)
 
 foodList.insertAdjacentHTML('beforeend', foodMarkup)
 

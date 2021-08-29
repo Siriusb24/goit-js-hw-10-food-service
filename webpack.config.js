@@ -1,57 +1,50 @@
-const path = require("path");
-const { merge } = require("webpack-merge");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
-const WebpackBar = require("webpackbar");
+const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
-const loadModeConfig = (env) =>
-  require(`./build-utils/${env.mode}.config.js`)(env);
-
-module.exports = (env) =>
-  merge(
-    {
-      mode: env.mode,
-      context: path.resolve(__dirname, "src"),
-
-      entry: "./index.js",
-      output: {
-        path: path.resolve(__dirname, "dist"),
-        filename: "[name].bundle.js",
-      },
-      module: {
-        rules: [
-          {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: ["babel-loader"],
-          },
-          {
-            test: /\.html$/,
-            use: ["html-loader"],
-          },
-          {
-            test: /\.(gif|png|jpe?g|svg)$/,
-            use: [
-              {
-                loader: "url-loader",
-                options: {
-                  name: "[path]/[name].[ext]",
-                  limit: false,
-                },
-              },
-            ],
-          },
-          {
-            test: /\.hbs$/,
-            use: ["handlebars-loader"],
-          },
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'main.js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          MiniCssExtractPlugin.loader,
+          // Translates CSS into CommonJS
+          'css-loader',
+          // Compiles Sass to CSS
+          'sass-loader',
         ],
       },
-      plugins: [
-        new CleanWebpackPlugin(),
-        new FriendlyErrorsWebpackPlugin(),
-        new WebpackBar(),
-      ],
-    },
-    loadModeConfig(env),
-  );
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+      {
+        test: /\.handlebars$/,
+        loader: 'handlebars-loader',
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: '[name].css',
+      chunkFilename: '[id].css',
+    }),
+    new CleanWebpackPlugin(),
+  ],
+  devServer: {
+    open: true,
+    port: 9000,
+  },
+}

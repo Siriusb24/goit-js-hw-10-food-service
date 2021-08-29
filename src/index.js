@@ -5,7 +5,7 @@
 import './css/styles.scss'
 import foodGallery from './menu.json'
 import foodTamplate from './tamplates/food-gallery.hbs'
-import theme from './js/Theme.js'
+
 
 // ----------------------------------------------------------------------------
 // ------------------------------- ВСЕ ДОСТУПЫ --------------------------------
@@ -13,8 +13,9 @@ import theme from './js/Theme.js'
 const body = document.querySelector('body')
 const foodList = document.querySelector(".js-menu")
 const foodMarkup = foodTamplate(foodGallery)
-foodList.insertAdjacentHTML('beforeend', foodMarkup)
 const lightControl = document.getElementById("theme-switch-toggle")
+
+foodList.insertAdjacentHTML('beforeend', foodMarkup)
 
 const Theme = {
     LIGHT: 'light-theme',
@@ -34,14 +35,16 @@ const Theme = {
            body.classList.remove(Theme.DARK)
            localStorage.removeItem("class", "dark")}
     }
+
+    if(localStorage.getItem('class')){
+        lightControl.checked = true
+        body.classList.add(Theme.DARK);
+    }
 // ----------------------------------------------------------------------------
 // ------------------------------ ВСЕ СЛУШАТЕЛИ -------------------------------
 // ----------------------------------------------------------------------------
 lightControl.addEventListener('change', onTargetImput)
    
-if(localStorage.getItem('class')){
-    lightControl.checked = true
-    body.classList.add(Theme.DARK);
-}
+
 
    

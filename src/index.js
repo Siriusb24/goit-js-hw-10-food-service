@@ -23,23 +23,24 @@ const Theme = {
     DARK: 'dark-theme',
   };
 
+const {DARK, LIGHT} = Theme
 
 // ----------------------------------------------------------------------------
 // ------------------------------- ВСЕ ФУНКЦИИ --------------------------------
 // ----------------------------------------------------------------------------
     function onTargetImput(e){
             if(e.target.checked === true){
-            body.classList.add(Theme.DARK);
+            body.classList.add(DARK);
             localStorage.setItem("class", "dark")
             } else {
-           body.classList.add(Theme.LIGHT)
-           body.classList.remove(Theme.DARK)
+           body.classList.add(LIGHT)
+           body.classList.remove(DARK)
            localStorage.removeItem("class", "dark")}
     }
 
     if(localStorage.getItem('class')){
         lightControl.checked = true
-        body.classList.add(Theme.DARK);
+        body.classList.add(DARK);
     }
 // ----------------------------------------------------------------------------
 // ------------------------------ ВСЕ СЛУШАТЕЛИ -------------------------------

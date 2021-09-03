@@ -1,0 +1,1 @@
+{"version":3,"sources":["css/styles.scss"],"names":[],"mappings":"AAAA,KACE,sBAGF,iBAGE","file":"src.3cd815d5.css","sourceRoot":"../src","sourcesContent":["html {\n  box-sizing: border-box;\n}\n\n*,\n*::before,\n*::after {\n  box-sizing: inherit;\n}\n"]}
